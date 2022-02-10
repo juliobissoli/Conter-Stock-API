@@ -34,18 +34,13 @@ export class ProductsController {
 
   @Put(':id')
   async updateQuantity(@Param('id') id: string, @Body() data:any) {
-    console.log(data)
     // const product = await this.productsService.findOne(id);
 
     let code = data.message_qr.split('@');
     if(code.length > 0) code  = parseInt(code[0])
 
-
-    console.log("Code -==> ", code)
     const product = await this.productsService.findByCode(code);
-    console.log('prod  => ', product)
     if(product) {
-      console.log("product => ", product)
       product.quantity += data.quantity;
       return await product.save();
 
