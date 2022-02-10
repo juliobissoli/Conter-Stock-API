@@ -23,6 +23,12 @@ export class ProductsService {
     return this.productModel.findById(id);
   }
 
+ async findByCode(code: number) {
+    const list = await this.productModel.find({code: code});
+    return list[0] || null
+  }
+
+
   update(id: string, updateProductDto: UpdateProductDto) {
     return this.productModel.findByIdAndUpdate(
         { _id: id,},
