@@ -10,7 +10,7 @@ export class Product {
   @Prop()
   type: string;
   @Prop()
-  code: number;
+  code: string;
   @Prop()
   quantity: number;
   @Prop()

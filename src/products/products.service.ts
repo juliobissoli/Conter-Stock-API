@@ -9,6 +9,7 @@ import { Product, ProductDocument,  } from './entities/product.entity';
 @Injectable()
 export class ProductsService {
   constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+  
   create(createProductDto: CreateProductDto) {
     const product = new this.productModel(createProductDto);
     return product.save();
@@ -16,15 +17,15 @@ export class ProductsService {
   }
 
   findAll() {
-    return this.productModel.find();
+    return this.productModel.find({strict: false});
   }
 
   findOne(id: string) {
     return this.productModel.findById(id);
   }
 
- async findByCode(code: number) {
-    const list = await this.productModel.find({code: code});
+ async findByCode(code: string) {
+    const list = await this.productModel.find({code: code, strict: false});
     return list[0] || null
   }
 
