@@ -3,9 +3,8 @@ import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Product, ProductSchema } from './entities/product.entity';
-import { History,  HistorySchema } from '../history/entities/history.entity';
+import { History, HistorySchema } from '../history/entities/history.entity';
 import { HistoriesService } from '../history/history.service';
-
 
 @Module({
   imports: [
@@ -15,8 +14,6 @@ import { HistoriesService } from '../history/history.service';
     ]),
   ],
   controllers: [ProductsController],
-  providers: [ProductsService, 
-    HistoriesService
-  ],
+  providers: [ProductsService, HistoriesService],
 })
 export class ProductsModule {}
